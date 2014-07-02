@@ -50,5 +50,5 @@ Page @(ViewBag.Pages < ViewBag.Page ? 0 : ViewBag.Page) of @ViewBag.Pages
 @Html.PagedListPager(Model, page => Url.Action("groupedCountries", new { page, Model.PageSize }))
 
 @section footer{
-    footer
+    &copy; Made by Mateusz Florczak for Kainos
 }

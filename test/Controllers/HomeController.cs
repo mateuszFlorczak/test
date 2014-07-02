@@ -40,6 +40,7 @@ namespace test.Controllers
                                             Countrylanguage.percentage descending
                                     select Countrylanguage).ToPagedList(Page, PageSize);
             
+            //data necessary for pagination
             CAL.Page = Page;
             CAL.Pages = CAL.Countries.PageCount;
             CAL.PageSize = PageSize;
@@ -51,13 +52,6 @@ namespace test.Controllers
             List<countrylanguage> countryLanguages = db.countrylanguage.ToList();
             List<country> Countries = db.country.ToList();
 
-            //PagedList.IPagedList<Models.WorldLanguages> WL = new PagedList.IPagedList<Models.WorldLanguages>();
-            long population = 0;
-            foreach (var countr in Countries)
-            {
-                population += countr.population;
-            }
-
             var WL = (from Countrylanguage in countryLanguages
                   join Country in Countries on Countrylanguage.countrycode equals Country.code
                   group new { Countrylanguage, Country } by Countrylanguage.language into Languages
@@ -65,9 +59,10 @@ namespace test.Controllers
                   {
                       LanguageName = Languages.Key,
                       Population = Languages.Sum(x => x.Country.population),
-                      Percentage = 1//(float)Math.Round((double)(Languages.Sum(x => x.Country.Population) / population), 2)
+                      Percentage = 1//temporary value
                   }).OrderByDescending((x => x.Population)).ThenBy(x => x.LanguageName).ToPagedList(Page, PageSize);
 
+            //data necessary for pagination
             ViewBag.Page = Page;
             ViewBag.Pages = WL.PageCount;
             ViewBag.PageSize = PageSize;
