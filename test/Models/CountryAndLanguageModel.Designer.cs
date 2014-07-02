@@ -18,10 +18,10 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using System.Reflection;
 using System.Linq.Expressions;
-using System.Data.EntityClient;
-using System.Data.Metadata.Edm;
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core.Objects.DataClasses;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
