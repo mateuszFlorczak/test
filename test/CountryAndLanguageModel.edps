@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="5.7.387.0">
-  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="Ddehqcgsacci3gEntitiesConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version5" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="Ddehqcgsacci3gEntitiesConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
     <Connection ConnectionString="User Id=mmmwsvrkwfstit;Password=vlliFqilBOUVyWVY-FZfV50Wa3;Host=ec2-54-225-101-124.compute-1.amazonaws.com;Database=ddehqcgsacci3g;Persist Security Info=True;SSLMode=Allow" Provider="Devart.Data.PostgreSql" />
     <Generation />
     <DatabaseFirstNamingRules>
