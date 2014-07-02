@@ -7,7 +7,7 @@ namespace test.Models
 {
     public class CountriesAndLanguages
     {
-        public List<CountryAndLanguageModel.Country> Countries { get; set; }
-        public List<CountryAndLanguageModel.Countrylanguage> CountryLanguages { get; set; }
+        public List<country> Countries { get; set; }
+        public List<countrylanguage> CountryLanguages { get; set; }
     }
 }
