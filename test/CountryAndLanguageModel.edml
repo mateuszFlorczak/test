@@ -1,0 +1,173 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CountryAndLanguageModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.3.3" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CountryAndLanguageEntitiesStoreContainer">
+          <EntitySet Name="countries" EntityType="CountryAndLanguageModel.Store.country" store:Type="Tables" Schema="public" Table="country" />
+          <EntitySet Name="countrylanguages" EntityType="CountryAndLanguageModel.Store.countrylanguage" store:Type="Tables" Schema="public" Table="countrylanguage" />
+          <AssociationSet Name="countrylanguage_countrycode_fkey" Association="CountryAndLanguageModel.Store.countrylanguage_countrycode_fkey">
+            <End Role="country" EntitySet="countries" />
+            <End Role="countrylanguage" EntitySet="countrylanguages" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="char" Nullable="false" MaxLength="3" />
+          <Property Name="name" Type="text" Nullable="false" />
+          <Property Name="continent" Type="text" Nullable="false" />
+          <Property Name="region" Type="text" Nullable="false" />
+          <Property Name="surfacearea" Type="real" Nullable="false" />
+          <Property Name="indepyear" Type="smallint" />
+          <Property Name="population" Type="int" Nullable="false" />
+          <Property Name="lifeexpectancy" Type="real" />
+          <Property Name="gnp" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="gnpold" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="localname" Type="text" Nullable="false" />
+          <Property Name="governmentform" Type="text" Nullable="false" />
+          <Property Name="headofstate" Type="text" />
+          <Property Name="capital" Type="int" />
+          <Property Name="code2" Type="char" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="countrylanguage">
+          <Key>
+            <PropertyRef Name="countrycode" />
+            <PropertyRef Name="language" />
+          </Key>
+          <Property Name="countrycode" Type="char" Nullable="false" MaxLength="3" />
+          <Property Name="language" Type="text" Nullable="false" />
+          <Property Name="isofficial" Type="boolean" Nullable="false" />
+          <Property Name="percentage" Type="real" Nullable="false" />
+        </EntityType>
+        <Association Name="countrylanguage_countrycode_fkey">
+          <End Role="country" Type="CountryAndLanguageModel.Store.country" Multiplicity="1" />
+          <End Role="countrylanguage" Type="CountryAndLanguageModel.Store.countrylanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="countrylanguage">
+              <PropertyRef Name="countrycode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CountryAndLanguageModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CountryAndLanguageEntities" annotation:LazyLoadingEnabled="true" ed:Guid="0dc84ce4-c522-4827-82cc-a8fbdfa84972">
+          <EntitySet Name="Countries" EntityType="CountryAndLanguageModel.Country" />
+          <EntitySet Name="Countrylanguages" EntityType="CountryAndLanguageModel.Countrylanguage" />
+          <AssociationSet Name="countrylanguage_countrycode_fkeySet" Association="CountryAndLanguageModel.countrylanguage_countrycode_fkey">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Countrylanguages" EntitySet="Countrylanguages" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Country" ed:Guid="a2f7f109-4721-4a2b-981f-6d22200a8027">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="3" FixedLength="true" ed:ValidateMaxLength="3" ed:ValidateRequired="True" ed:Guid="bc951da0-7fc3-46dd-8a73-8173b8c1517c" />
+          <Property Name="Name" Type="String" Nullable="false" ed:ValidateRequired="True" ed:Guid="9e6f6b05-e4ee-4fb8-88de-c9cff1f4fd48" />
+          <Property Name="Continent" Type="String" Nullable="false" ed:ValidateRequired="True" ed:Guid="4fdbf3ae-c0e6-4957-8e96-ee4810704c99" />
+          <Property Name="Region" Type="String" Nullable="false" ed:ValidateRequired="True" ed:Guid="f829f48c-26df-46e3-b31a-71c8e31d7443" />
+          <Property Name="Surfacearea" Type="Single" Nullable="false" ed:ValidateRequired="True" ed:Guid="722f0b93-339f-44ec-93e5-2b8d6be410f4" />
+          <Property Name="Indepyear" Type="Int16" ed:ValidateRequired="False" ed:Guid="78db57b3-20c7-4fd9-a805-0711ebe57c97" />
+          <Property Name="Population" Type="Int32" Nullable="false" ed:ValidateRequired="True" ed:Guid="6082ecc0-00fb-4136-8745-2599fea295b1" />
+          <Property Name="Lifeexpectancy" Type="Single" ed:ValidateRequired="False" ed:Guid="25cf259d-fc2e-42ea-89df-193955413090" />
+          <Property Name="Gnp" Type="Decimal" Precision="10" Scale="2" ed:ValidateRequired="False" ed:Guid="9e4e2f8b-36ff-4130-a1de-25987eabaf13" />
+          <Property Name="Gnpold" Type="Decimal" Precision="10" Scale="2" ed:ValidateRequired="False" ed:Guid="0c75ff0a-9810-4365-9384-16b23c722bd6" />
+          <Property Name="Localname" Type="String" Nullable="false" ed:ValidateRequired="True" ed:Guid="d502693d-dc0c-4f2e-a11e-36ebaa892317" />
+          <Property Name="Governmentform" Type="String" Nullable="false" ed:ValidateRequired="True" ed:Guid="5fc14f4f-8b85-4c72-99be-fd457ccb86c3" />
+          <Property Name="Headofstate" Type="String" ed:ValidateRequired="False" ed:Guid="a14c121d-6dd3-4a88-aff6-f6b86328ad39" />
+          <Property Name="Capital" Type="Int32" ed:ValidateRequired="False" ed:Guid="f485ed5d-4763-4ca5-9db9-8b113c47ae77" />
+          <Property Name="Code2" Type="String" Nullable="false" MaxLength="2" FixedLength="true" ed:ValidateMaxLength="2" ed:ValidateRequired="True" ed:Guid="49271b67-fd05-4bc3-93e0-b4a5e9126b50" />
+          <NavigationProperty Name="Countrylanguages" Relationship="CountryAndLanguageModel.countrylanguage_countrycode_fkey" FromRole="Country" ToRole="Countrylanguages" ed:Guid="949d01de-e585-4387-88ca-168cc12091c9" />
+        </EntityType>
+        <EntityType Name="Countrylanguage" ed:Guid="df8b3180-c399-4657-8fc8-57f70f9b580f">
+          <Key>
+            <PropertyRef Name="Countrycode" />
+            <PropertyRef Name="Language" />
+          </Key>
+          <Property Name="Countrycode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" ed:ValidateMaxLength="3" ed:ValidateRequired="True" ed:Guid="355003d3-fe65-46db-9f3d-62d99b53dad3" />
+          <Property Name="Language" Type="String" Nullable="false" ed:ValidateRequired="True" ed:Guid="52db3c1e-7835-4883-ad4f-5257c633dd04" />
+          <Property Name="Isofficial" Type="Boolean" Nullable="false" ed:ValidateRequired="True" ed:Guid="e17b6c04-ec32-4326-87aa-0a1bc0d63fee" />
+          <Property Name="Percentage" Type="Single" Nullable="false" ed:ValidateRequired="True" ed:Guid="85cd25ed-18ed-4e1f-ba95-19a5e55d80ab" />
+          <NavigationProperty Name="Country" Relationship="CountryAndLanguageModel.countrylanguage_countrycode_fkey" FromRole="Countrylanguages" ToRole="Country" ed:Guid="de9c8da5-38da-4ef7-9df9-ed3c8f737f8a" />
+        </EntityType>
+        <Association Name="countrylanguage_countrycode_fkey" ed:Guid="6a1559fd-3784-4a4d-a859-cde3b0de55d0">
+          <End Role="Country" Type="CountryAndLanguageModel.Country" Multiplicity="1" />
+          <End Role="Countrylanguages" Type="CountryAndLanguageModel.Countrylanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Countrylanguages">
+              <PropertyRef Name="Countrycode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CountryAndLanguageEntitiesStoreContainer" CdmEntityContainer="CountryAndLanguageEntities">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="CountryAndLanguageModel.Country">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="Code" ColumnName="code" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Continent" ColumnName="continent" />
+                <ScalarProperty Name="Region" ColumnName="region" />
+                <ScalarProperty Name="Surfacearea" ColumnName="surfacearea" />
+                <ScalarProperty Name="Indepyear" ColumnName="indepyear" />
+                <ScalarProperty Name="Population" ColumnName="population" />
+                <ScalarProperty Name="Lifeexpectancy" ColumnName="lifeexpectancy" />
+                <ScalarProperty Name="Gnp" ColumnName="gnp" />
+                <ScalarProperty Name="Gnpold" ColumnName="gnpold" />
+                <ScalarProperty Name="Localname" ColumnName="localname" />
+                <ScalarProperty Name="Governmentform" ColumnName="governmentform" />
+                <ScalarProperty Name="Headofstate" ColumnName="headofstate" />
+                <ScalarProperty Name="Capital" ColumnName="capital" />
+                <ScalarProperty Name="Code2" ColumnName="code2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countrylanguages">
+            <EntityTypeMapping TypeName="CountryAndLanguageModel.Countrylanguage">
+              <MappingFragment StoreEntitySet="countrylanguages">
+                <ScalarProperty Name="Countrycode" ColumnName="countrycode" />
+                <ScalarProperty Name="Language" ColumnName="language" />
+                <ScalarProperty Name="Isofficial" ColumnName="isofficial" />
+                <ScalarProperty Name="Percentage" ColumnName="percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
