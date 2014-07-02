@@ -47,13 +47,17 @@
     </tbody>
 </table>
 <br />
-<textarea class="pageItemsCount" onkeypress="return isNumberKey(event)" rows="1">@Model.Page</textarea>
+<div>
+    <form action="/Home/countries" method="post">
+        Elements on page: @*<textarea class="pageItemsCount" onkeypress="return isNumberKey(event)" rows="1">@Model.Page</textarea>*@
+        <input id="PageSize" name="PageSize" type="number" min="1" value="'@(Model.PageSize)'" onkeypress="return isNumberKey(event)" />
+        <input type="submit" value="save"/>
+    </form>
+</div>
 
-@*@Html.BeginForm()
-@Html.TextArea("pageItemsCount", @Model.Page, )*@
 Page @(Model.Pages < Model.Page ? 0 : Model.Page) of @Model.Pages
 
-@Html.PagedListPager(Model.Countries, page => Url.Action("countries", new { page }))
+@Html.PagedListPager(Model.Countries, page => Url.Action("countries", new { page, Model.PageSize }))
 
 @section footer{
     footer

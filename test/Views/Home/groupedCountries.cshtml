@@ -38,9 +38,16 @@
     </tbody>
 </table>
 <br />
+<div>
+    <form action="/Home/groupedCountries" method="post">
+        Elements on page: @*<textarea class="pageItemsCount" onkeypress="return isNumberKey(event)" rows="1">@Model.Page</textarea>*@
+        <input id="PageSize" name="PageSize" type="number" min="1" value="'@(Model.PageSize)'" onkeypress="return isNumberKey(event)" />
+        <input type="submit" value="save" />
+    </form>
+</div>
 Page @(ViewBag.Pages < ViewBag.Page ? 0 : ViewBag.Page) of @ViewBag.Pages
 
-@Html.PagedListPager(Model, page => Url.Action("groupedCountries", new { page }))
+@Html.PagedListPager(Model, page => Url.Action("groupedCountries", new { page, Model.PageSize }))
 
 @section footer{
     footer
