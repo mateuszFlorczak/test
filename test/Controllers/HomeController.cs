@@ -11,6 +11,7 @@ namespace test.Controllers
     {
         private CountryAndLanguageModel.CountryAndLanguageEntities db = new CountryAndLanguageModel.CountryAndLanguageEntities();
         // GET: Home
+        public HomeController() { }
         public ActionResult Index()
         {
             return View();
