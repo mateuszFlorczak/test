@@ -7,7 +7,10 @@ namespace test.Models
 {
     public class CountriesAndLanguages
     {
-        public List<country> Countries { get; set; }
-        public List<countrylanguage> CountryLanguages { get; set; }
+        public PagedList.IPagedList<country> Countries { get; set; }
+        public PagedList.IPagedList<countrylanguage> CountryLanguages { get; set; }
+        public int Page;
+        public int Pages;
+        public int PageSize;
     }
 }

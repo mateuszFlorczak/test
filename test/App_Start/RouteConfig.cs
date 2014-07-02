@@ -18,6 +18,9 @@ namespace test
                 url: "{controller}/{action}/{countryCode}",
                 defaults: new { controller = "Home", action = "Index", countryCode = UrlParameter.Optional }
             );
+            //routes.MapRoute(
+            //    name: "countriesPagination", 
+            //    url: )
         }
     }
 }
