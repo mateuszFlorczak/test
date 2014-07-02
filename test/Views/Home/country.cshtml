@@ -4,14 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var countryLanguages = Model;
     ViewBag.Header = "Language use in " + ViewBag.CountryName;
+    float percent = 0;
 }
 <br /><br />
 <script type="text/javascript">
     data = new Array();
+    data2 = new Array();
     function init(name, value)
     {
         tmp = { "label": name, "value": parseFloat(value) };
         data.push(tmp);
+        tmp = { "label": value, "value": parseFloat(value) };
+        data2.push(tmp);
     }
     function myFunc() {
         var w = 400,                        //width
@@ -60,8 +64,8 @@
                 y = c[1],
                 // pythagorean theorem for hypotenuse
                 nh = Math.sqrt(x*x + y*y);
-            return "translate(" + (x/nh * (r + 5)) +  ',' +
-               (y/nh * (r + 5)) +  ")";
+            return "translate(" + (x/nh * (r + 10)) +  ',' +
+               (y/nh * (r + 20)) +  ")";
         })
         .attr("text-anchor", function (d) {
             var rads = ((d.endAngle - d.startAngle) / 2) + d.startAngle;
@@ -76,15 +80,37 @@
             }
         })
             .attr("display", function (d) {
-                if ((d.endAngle - d.startAngle) < Math.PI / 310)
+                if ((d.endAngle - d.startAngle) < Math.PI / 20)
                     return "none";
         })
         .text(function (d, i) { return data[i].label; });
 
+        arcs.append("svg:text")                                     //add a label to each slice
+        .attr("transform", function (d) {                    //set the label's origin to the center of the arc
+            //we have to make sure to set these before calling arc.centroid
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+        })
+            .attr("display", function (d) {
+                if ((d.endAngle - d.startAngle) < Math.PI / 20)
+                    return "none";
+        })
+            .attr("text-anchor", "middle")                          //center the text on it's origin
+            .text(function (d, i) { return data2[i].label; });        //get the label from our original data array
     }
-    @for (int i = 0; i < Model.Count; ++i )
-    {
-        @:init('@(Model[i].language)', '@(Model[i].percentage)');
+    @{
+        for (int i = 0; i < Model.Count; ++i )
+        {
+            percent += Model[i].percentage;
+            @:init('@(Model[i].language)', '@(Model[i].percentage)');
+        }
+        if(percent < 100)
+        { 
+            percent = 100 - percent;
+            percent = (float)Math.Round(percent, 2);
+            @:init("other", '@(percent)');
+        }
     }
     myFunc();
 </script>
