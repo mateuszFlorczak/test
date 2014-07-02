@@ -123,6 +123,7 @@
   <ItemGroup>
     <Content Include="Content\main.css" />
     <Content Include="Global.asax" />
+    <EmbeddedResource Include="test.dll.licenses" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
