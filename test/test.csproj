@@ -131,7 +131,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="test.dll.licenses" />
-    <Content Include="Scripts\validation.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -139,9 +138,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="country.cs" />
-    <Compile Include="CountryAndLanguageModel.cs" />
-    <Compile Include="countrylanguage.cs" />
+    <Compile Include="Models\country.cs" />
+    <Compile Include="Models\CountryAndLanguageModel.cs" />
+    <Compile Include="Models\countrylanguage.cs" />
     <Compile Include="Models\CountriesAndLanguages.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
